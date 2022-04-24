@@ -34,7 +34,7 @@ function RankGame() {
         <UserSort data={data} setData={setData}></UserSort>
       )}
 
-      <ItemList data={data} setData={setData}></ItemList>
+      <ItemList data={data}></ItemList>
     </div>
   );
 }
