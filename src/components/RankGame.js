@@ -22,7 +22,7 @@ function RankGame() {
     <div>
       {mode === "adding" && (
         <DataAdder
-          handleCreate={addItem}
+          createItem={addItem}
           handleFinish={enterRankingMode}
         ></DataAdder>
       )}

@@ -1,6 +1,6 @@
 function Item({ title }) {
   return (
-    <div class="someclass">
+    <div className="someclass">
       <h1>{title}</h1>
     </div>
   );

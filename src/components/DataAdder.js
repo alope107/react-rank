@@ -1,16 +1,34 @@
 import { useState } from "react";
 
-function DataAdder({ handleCreate, handleFinish }) {
-  const [value, updateValue] = useState("bigData");
+function DataAdder({ createItem, handleFinish }) {
+  const [value, setValue] = useState("");
+
+  const handleKeyUp = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    if (value !== "") {
+      createItem(value);
+      setValue("");
+    }
+  };
 
   const handleChange = (event) => {
-    updateValue(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
     <div>
-      <input type="text" value={value} onChange={handleChange}></input>
-      <button onClick={() => handleCreate(value)}>Create</button>
+      <input
+        type="text"
+        value={value}
+        onChange={handleChange}
+        onKeyUp={handleKeyUp}
+      ></input>
+      <button onClick={handleSubmit}>Create</button>
       <button onClick={handleFinish}>Done</button>
     </div>
   );
