@@ -29,12 +29,12 @@ function* nonBlockSort(arr, updateArr, updatePair) {
       }
     }
   }
-  console.log("All done!");
 }
 
 function SimpleContainer({ data, setData }) {
   const [pair, updatePair] = useState([55, 55]);
   const [stepper] = useState(nonBlockSort(data, setData, updatePair));
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     // Update the stepper only once - gets us to the first yield
@@ -43,12 +43,15 @@ function SimpleContainer({ data, setData }) {
     stepper.next();
   }, [stepper]);
 
-  const unpause = (n) => stepper.next(n);
+  const unpause = (n) => {
+    if (stepper.next(n).done) {
+      setFinished(true);
+    }
+  };
 
   return (
     <div>
-      {data.toString()}
-      <SimpleButton unpause={unpause} pair={pair}></SimpleButton>
+      {!finished && <SimpleButton unpause={unpause} pair={pair}></SimpleButton>}
     </div>
   );
 }
