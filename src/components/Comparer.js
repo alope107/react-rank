@@ -1,15 +1,16 @@
 import Item from "./Item";
 
-function Comparer({ items, handleSelect }) {
-  const buttons = items.map((element, idx) => (
-    <button key={idx} onClick={() => handleSelect(element)}>
-      <Item title={element}></Item>
-    </button>
-  ));
+function Comparer({ items, setShouldSwap }) {
+  console.log("Re-render comparer");
   return (
     <div>
       <h1>Choose your fighter</h1>
-      {buttons}
+      <button onClick={() => setShouldSwap(true)}>
+        <Item title={items[0]}></Item>
+      </button>
+      <button onClick={() => setShouldSwap(false)}>
+        <Item title={items[1]}></Item>
+      </button>
     </div>
   );
 }
