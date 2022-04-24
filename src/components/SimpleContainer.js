@@ -33,13 +33,6 @@ function* nonBlockSort(arr, updateArr, updatePair) {
 }
 
 function SimpleContainer({ data, setData }) {
-  // const [data, updateData] = useState([
-  //   "Spicy City",
-  //   "In-n-Out",
-  //   "Sizzle n' Crunch",
-  //   "Mamnoon",
-  //   "Musashi's",
-  // ]);
   const [pair, updatePair] = useState([55, 55]);
   const [stepper] = useState(nonBlockSort(data, setData, updatePair));
 
@@ -48,7 +41,7 @@ function SimpleContainer({ data, setData }) {
     // That way, any successive steps can successfully pass values
     // through the yields.
     stepper.next();
-  }, []);
+  }, [stepper]);
 
   const unpause = (n) => stepper.next(n);
 
