@@ -1,6 +1,10 @@
-function SimpleButton({ unpause }) {
-  console.log(unpause);
-  return <button onClick={unpause}>Hup</button>;
+function SimpleButton({ unpause, pair }) {
+  return (
+    <div>
+      <button onClick={() => unpause(true)}>{pair[0]}</button>
+      <button onClick={() => unpause(false)}>{pair[1]}</button>
+    </div>
+  );
 }
 
 export default SimpleButton;
