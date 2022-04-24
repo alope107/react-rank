@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function DataAdder({ createItem, handleFinish }) {
+function DataAdder({ createItem, handleFinish, finishDisabled }) {
   const [value, setValue] = useState("");
 
   const handleKeyUp = (event) => {
@@ -39,8 +39,10 @@ function DataAdder({ createItem, handleFinish }) {
         onChange={handleChange}
         onKeyUp={handleKeyUp}
       ></input>
-      <button onClick={handleSubmit}>Create</button>
-      <button onClick={handleFinish}>Done</button>
+      <button onClick={handleSubmit}>Add Item</button>
+      <button onClick={handleFinish} disabled={finishDisabled}>
+        Start Ranking!
+      </button>
     </div>
   );
 }

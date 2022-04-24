@@ -27,6 +27,7 @@ function RankGame() {
         <DataAdder
           createItem={addItem}
           handleFinish={enterRankingMode}
+          finishDisabled={data.length < 2}
         ></DataAdder>
       )}
 
