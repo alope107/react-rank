@@ -31,6 +31,13 @@ function* nonBlockSort(arr, updateArr, updatePair) {
   }
 }
 
+/**
+ *
+ * @param {Object} props
+ * @param {Array} props.data
+ * @param {function(Array)} props.setData
+ * @returns
+ */
 function UserSort({ data, setData }) {
   const [pair, updatePair] = useState([55, 55]);
   const [stepper] = useState(nonBlockSort(data, setData, updatePair));
