@@ -1,4 +1,4 @@
-function SimpleButton({ unpause, pair }) {
+function Comparator({ unpause, pair }) {
   return (
     <div>
       <button onClick={() => unpause(true)}>{pair[0]}</button>
@@ -7,4 +7,4 @@ function SimpleButton({ unpause, pair }) {
   );
 }
 
-export default SimpleButton;
+export default Comparator;

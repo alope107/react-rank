@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SimpleButton from "./SimpleButton";
+import Comparator from "./Comparator";
 
 /**
  * Does a bubble sort bit by bit. It non-blockingly delegates
@@ -31,7 +31,7 @@ function* nonBlockSort(arr, updateArr, updatePair) {
   }
 }
 
-function SimpleContainer({ data, setData }) {
+function UserSort({ data, setData }) {
   const [pair, updatePair] = useState([55, 55]);
   const [stepper] = useState(nonBlockSort(data, setData, updatePair));
   const [finished, setFinished] = useState(false);
@@ -51,9 +51,9 @@ function SimpleContainer({ data, setData }) {
 
   return (
     <div>
-      {!finished && <SimpleButton unpause={unpause} pair={pair}></SimpleButton>}
+      {!finished && <Comparator unpause={unpause} pair={pair}></Comparator>}
     </div>
   );
 }
 
-export default SimpleContainer;
+export default UserSort;

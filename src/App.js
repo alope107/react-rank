@@ -1,7 +1,7 @@
-import Ranker from "./components/Ranker";
+import RankGame from "./components/RankGame";
 
 function App() {
-  return <Ranker></Ranker>;
+  return <RankGame></RankGame>;
 }
 
 export default App;

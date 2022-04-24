@@ -1,10 +1,10 @@
 import { useState } from "react";
 import DataAdder from "./DataAdder";
 import ItemList from "./ItemList";
-import SimpleContainer from "./SimpleContainer";
+import UserSort from "./UserSort";
 
-function Ranker() {
-  const [data, setData] = useState(["d", "a", "c", "b"]);
+function RankGame() {
+  const [data, setData] = useState([]);
   const [mode, setMode] = useState("adding");
 
   const addItem = (title) => {
@@ -24,11 +24,11 @@ function Ranker() {
         ></DataAdder>
       )}
       {mode === "ranking" && (
-        <SimpleContainer data={data} setData={setData}></SimpleContainer>
+        <UserSort data={data} setData={setData}></UserSort>
       )}
       <ItemList data={data}></ItemList>
     </div>
   );
 }
 
-export default Ranker;
+export default RankGame;
