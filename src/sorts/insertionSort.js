@@ -11,6 +11,12 @@
  * @param {function(Array)} updatePair The state updater for the pair to check
  */
 function* insertionSort(arr, updateArr, updatePair) {
+  function swap(i, j) {
+    arr = [...arr];
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+    updateArr(arr);
+  }
+
   for (let i = 0; i < arr.length; i++) {
     for (let j = i; j > 0; j--) {
       // Selects pair for comparison and waits for result
@@ -18,9 +24,7 @@ function* insertionSort(arr, updateArr, updatePair) {
       const shouldSwap = yield;
 
       if (shouldSwap) {
-        arr = [...arr];
-        [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
-        updateArr(arr);
+        swap(j, j - 1);
       } else {
         break;
       }
