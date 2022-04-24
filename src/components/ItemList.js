@@ -15,7 +15,16 @@ function ItemList({ data, setData }) {
             animate={{
               opacity: 1,
               y: 0,
-              transition: { duration: 0.15 },
+              transition: {
+                type: "spring",
+                stiffness: 700,
+                damping: 15,
+              },
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30,
             }}
           >
             <Item key={datum} title={datum}></Item>

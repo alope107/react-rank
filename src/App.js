@@ -1,3 +1,4 @@
+import "./App.css";
 import RankGame from "./components/RankGame";
 
 function App() {

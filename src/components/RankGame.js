@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 import UserSort from "./UserSort";
 
 function RankGame() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([5, 4, 3, 2, 1]);
 
   // Mode is either "adding" (adding new items to list)
   // or "ranking" (sorting the list)
