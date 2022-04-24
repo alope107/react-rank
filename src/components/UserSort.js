@@ -43,15 +43,22 @@ function UserSort({ data, setData }) {
     stepper.next();
   }, [stepper]);
 
-  const unpause = (n) => {
-    if (stepper.next(n).done) {
+  /**
+   * Sends the result of a comparison to the stepper.
+   * Sets the finished state to true once the stepper is
+   * exhausted (sorting is done).
+   *
+   * @param {Boolean} shouldSwap Whether the stepper should make the swap.
+   */
+  const compare = (shouldSwap) => {
+    if (stepper.next(shouldSwap).done) {
       setFinished(true);
     }
   };
 
   return (
     <div>
-      {!finished && <Comparator unpause={unpause} pair={pair}></Comparator>}
+      {!finished && <Comparator compare={compare} pair={pair}></Comparator>}
     </div>
   );
 }

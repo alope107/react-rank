@@ -5,6 +5,9 @@ import UserSort from "./UserSort";
 
 function RankGame() {
   const [data, setData] = useState([]);
+
+  // Mode is either "adding" (adding new items to list)
+  // or "ranking" (sorting the list)
   const [mode, setMode] = useState("adding");
 
   const addItem = (title) => {
@@ -23,9 +26,11 @@ function RankGame() {
           handleFinish={enterRankingMode}
         ></DataAdder>
       )}
+
       {mode === "ranking" && (
         <UserSort data={data} setData={setData}></UserSort>
       )}
+
       <ItemList data={data}></ItemList>
     </div>
   );
