@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 import SimpleButton from "./SimpleButton";
 
-function* gen(arr, updateArr, updatePair) {
+/**
+ * Does a bubble sort bit by bit. It non-blockingly delegates
+ * comparisons to some outside comparator. It uses updatePair
+ * to denote the two items it wants compared. The outside
+ * comparator should then call next on the iterator and pass
+ * true if the first item in the pair should be before the second,
+ * false otherwise.
+ *
+ * @param {Array} arr The initial data array
+ * @param {function(Array)} updateArr The state updater for arr
+ * @param {function(Array)} updatePair The state updater for the pair to check
+ */
+function* nonBlockSort(arr, updateArr, updatePair) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i; j > 0; j--) {
-      console.log(`checkin' ${[j, j - 1]}`);
+      // Selects pair for comparison and waits for result
       updatePair([arr[j], arr[j - 1]]);
       const shouldSwap = yield;
+
       if (shouldSwap) {
-        console.log(`swappin' ${[j, j - 1]}`);
         arr = [...arr];
         [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
         updateArr(arr);
@@ -20,12 +32,21 @@ function* gen(arr, updateArr, updatePair) {
   console.log("All done!");
 }
 
-function SimpleContainer() {
-  const [data, updateData] = useState([3, 5, 1, 77, 4, 2]);
+function SimpleContainer({ data, setData }) {
+  // const [data, updateData] = useState([
+  //   "Spicy City",
+  //   "In-n-Out",
+  //   "Sizzle n' Crunch",
+  //   "Mamnoon",
+  //   "Musashi's",
+  // ]);
   const [pair, updatePair] = useState([55, 55]);
-  const [stepper] = useState(gen(data, updateData, updatePair));
+  const [stepper] = useState(nonBlockSort(data, setData, updatePair));
 
   useEffect(() => {
+    // Update the stepper only once - gets us to the first yield
+    // That way, any successive steps can successfully pass values
+    // through the yields.
     stepper.next();
   }, []);
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Comparer from "./Comparer";
 import DataAdder from "./DataAdder";
 import ItemList from "./ItemList";
+import SimpleContainer from "./SimpleContainer";
 
 function* sortDelayed(len, sortState, setToCheck, executeSwap) {
   console.log("startin'");
@@ -24,56 +25,56 @@ function Ranker() {
   const [data, setData] = useState(["d", "a", "c", "b"]);
   const [mode, setMode] = useState("adding");
 
-  const [sortStepper, setSortStepper] = useState(null);
-  const [sortState, setSortState] = useState({
-    toCheck: [0, 0],
-    shouldSwap: false,
-    checkCount: 0,
-    continueSort: true,
-  });
+  // const [sortStepper, setSortStepper] = useState(null);
+  // const [sortState, setSortState] = useState({
+  //   toCheck: [0, 0],
+  //   shouldSwap: false,
+  //   checkCount: 0,
+  //   continueSort: true,
+  // });
 
-  const setToCheck = (a, b) => {
-    console.log(`setToCheck ${[a, b]}`);
-    const newSortState = { ...sortState };
-    newSortState.toCheck = [data[a], data[b]];
-    newSortState.continueSort = false;
-    setSortState(newSortState);
-  };
+  // const setToCheck = (a, b) => {
+  //   console.log(`setToCheck ${[a, b]}`);
+  //   const newSortState = { ...sortState };
+  //   newSortState.toCheck = [data[a], data[b]];
+  //   newSortState.continueSort = false;
+  //   setSortState(newSortState);
+  // };
 
-  const setShouldSwap = (shouldSwap) => {
-    console.log("setShouldSwap");
-    const newSortState = { ...sortState };
-    newSortState.shouldSwap = shouldSwap;
-    newSortState.checkCount += 1;
-    newSortState.continueSort = true;
-    sortStepper.next();
-    setSortState(newSortState);
-  };
+  // const setShouldSwap = (shouldSwap) => {
+  //   console.log("setShouldSwap");
+  //   const newSortState = { ...sortState };
+  //   newSortState.shouldSwap = shouldSwap;
+  //   newSortState.checkCount += 1;
+  //   newSortState.continueSort = true;
+  //   sortStepper.next();
+  //   setSortState(newSortState);
+  // };
 
   const addItem = (title) => {
     setData([...data, title]);
   };
 
-  const executeSwap = (i, j) => {
-    const newSortState = { ...sortState };
-    newSortState.continueSort = false;
-    setSortState(newSortState);
+  // const executeSwap = (i, j) => {
+  //   const newSortState = { ...sortState };
+  //   newSortState.continueSort = false;
+  //   setSortState(newSortState);
 
-    const newData = [...data];
-    [newData[i], newData[j]] = [newData[j], newData[i]];
-    setData(newData);
-  };
+  //   const newData = [...data];
+  //   [newData[i], newData[j]] = [newData[j], newData[i]];
+  //   setData(newData);
+  // };
 
   const enterRankingMode = () => {
     setMode("ranking");
 
-    const sortStepper = sortDelayed(
-      data.length,
-      sortState,
-      setToCheck,
-      executeSwap
-    );
-    setSortStepper(sortStepper);
+    // const sortStepper = sortDelayed(
+    //   data.length,
+    //   sortState,
+    //   setToCheck,
+    //   executeSwap
+    // );
+    // setSortStepper(sortStepper);
   };
 
   // console.log(`Continue sorting? ${sortState.continueSort}`);
@@ -85,7 +86,7 @@ function Ranker() {
 
   return (
     <div>
-      {sortState.checkCount}
+      {/* {sortState.checkCount} */}
       {mode === "adding" && (
         <DataAdder
           handleCreate={addItem}
@@ -93,10 +94,11 @@ function Ranker() {
         ></DataAdder>
       )}
       {mode === "ranking" && (
-        <Comparer
-          items={sortState.toCheck}
-          setShouldSwap={setShouldSwap}
-        ></Comparer>
+        <SimpleContainer data={data} setData={setData}></SimpleContainer>
+        // <Comparer
+        //   items={sortState.toCheck}
+        //   setShouldSwap={setShouldSwap}
+        // ></Comparer>
       )}
       <ItemList data={data}></ItemList>
     </div>
