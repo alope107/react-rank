@@ -1,5 +1,5 @@
 /**
- * Does a bubble sort bit by bit. It non-blockingly delegates
+ * Does a insertion sort bit by bit. It non-blockingly delegates
  * comparisons to some outside comparator. It uses updatePair
  * to denote the two items it wants compared. The outside
  * comparator should then call next on the iterator and pass
