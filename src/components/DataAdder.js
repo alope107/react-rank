@@ -10,10 +10,21 @@ function DataAdder({ createItem, handleFinish }) {
   };
 
   const handleSubmit = () => {
-    if (value !== "") {
-      createItem(value);
-      setValue("");
+    if (value === "") {
+      handleInvalid();
+      return;
     }
+    const success = createItem(value);
+    if (!success) {
+      handleInvalid();
+      return;
+    }
+    setValue("");
+  };
+
+  const handleInvalid = () => {
+    console.log("Can't enter that!");
+    // TODO: animate instead of logging error
   };
 
   const handleChange = (event) => {

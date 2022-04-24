@@ -11,7 +11,10 @@ function RankGame() {
   const [mode, setMode] = useState("adding");
 
   const addItem = (title) => {
+    if (data.includes(title)) return false;
+
     setData([...data, title]);
+    return true;
   };
 
   const enterRankingMode = () => {
