@@ -6,6 +6,9 @@
  * true if the first item in the pair should be before the second,
  * false otherwise.
  *
+ * Used https://www.geeksforgeeks.org/quick-sort/ as a base and made
+ * necessary modifications to handle nested delegation of generators.
+ *
  * @param {Array} arr The initial data array
  * @param {function(Array)} updateArr The state updater for arr
  * @param {function(Array)} updatePair The state updater for the pair to check
