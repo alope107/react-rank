@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Comparator from "./Comparator";
 
-import bubbleSort from "../sorts/bubbleSort";
+import insertionSort from "../sorts/insertionSort";
 
 /**
  *
@@ -12,7 +12,7 @@ import bubbleSort from "../sorts/bubbleSort";
  */
 function UserSort({ data, setData }) {
   const [pair, updatePair] = useState([null, null]);
-  const [stepper] = useState(bubbleSort(data, setData, updatePair));
+  const [stepper] = useState(insertionSort(data, setData, updatePair));
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {

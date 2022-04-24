@@ -10,7 +10,7 @@
  * @param {function(Array)} updateArr The state updater for arr
  * @param {function(Array)} updatePair The state updater for the pair to check
  */
-function* bubbleSort(arr, updateArr, updatePair) {
+function* insertionSort(arr, updateArr, updatePair) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i; j > 0; j--) {
       // Selects pair for comparison and waits for result
@@ -28,4 +28,4 @@ function* bubbleSort(arr, updateArr, updatePair) {
   }
 }
 
-export default bubbleSort;
+export default insertionSort;
