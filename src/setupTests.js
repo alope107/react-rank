@@ -8,6 +8,8 @@ import "@testing-library/jest-dom";
 const originalConsoleError = console.error;
 
 console.error = (...args) => {
+  // TODO(auberon): Have another go at only failing on errors generated
+  // by prop-types
   originalConsoleError(...args);
   throw new Error("Error printed to console (likely propTypes issue)");
 };
