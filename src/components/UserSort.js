@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Comparator from "./Comparator";
 
@@ -8,11 +9,12 @@ import insertionSort from "../sorts/insertionSort";
  * @param {Object} props
  * @param {Array} props.data
  * @param {function(Array)} props.setData
+ * @param {function(Array, function, function)} props.sortFactory
  * @returns
  */
-function UserSort({ data, setData }) {
+function UserSort({ data, setData, sortFactory = insertionSort }) {
   const [pair, updatePair] = useState([null, null]);
-  const [stepper] = useState(insertionSort(data, setData, updatePair));
+  const [stepper] = useState(sortFactory(data, setData, updatePair));
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
@@ -41,5 +43,11 @@ function UserSort({ data, setData }) {
     </div>
   );
 }
+
+UserSort.propTypes = {
+  data: PropTypes.array.isRequired,
+  setData: PropTypes.func.isRequired,
+  sortFactory: PropTypes.func,
+};
 
 export default UserSort;
