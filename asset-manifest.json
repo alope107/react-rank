@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-ranker/static/css/main.3c7fad2d.css",
+    "main.js": "/react-ranker/static/js/main.182a6475.js",
+    "static/js/787.dd9bd1a9.chunk.js": "/react-ranker/static/js/787.dd9bd1a9.chunk.js",
+    "index.html": "/react-ranker/index.html",
+    "main.3c7fad2d.css.map": "/react-ranker/static/css/main.3c7fad2d.css.map",
+    "main.182a6475.js.map": "/react-ranker/static/js/main.182a6475.js.map",
+    "787.dd9bd1a9.chunk.js.map": "/react-ranker/static/js/787.dd9bd1a9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c7fad2d.css",
+    "static/js/main.182a6475.js"
+  ]
+}
