@@ -12,7 +12,6 @@ import Item from "./Item";
  * @returns
  */
 function ItemList({ data }) {
-  // TODO(auberon): Investigate whether the Reorder.Group is even needed.
   return (
     <div>
       <Reorder.Group values={data} onReorder={() => {}}>

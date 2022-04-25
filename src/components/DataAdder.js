@@ -32,6 +32,8 @@ function DataAdder({ createItem, handleFinish, finishDisabled }) {
       handleInvalid();
       return;
     }
+
+    // Clear textbox so it can accept new input
     setValue("");
   };
 

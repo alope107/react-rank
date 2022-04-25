@@ -13,7 +13,7 @@ function RankGame() {
   const addItem = (title) => {
     if (data.includes(title)) return false;
 
-    setData([...data, title]);
+    setData([title, ...data]);
     return true;
   };
 
