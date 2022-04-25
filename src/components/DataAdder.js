@@ -1,5 +1,14 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 
+/**
+ *
+ * @param {Object} props
+ * @param {function(string)} props.createItem
+ * @param {function()} props.handleFinish
+ * @param {boolean} finishDisabled
+ * @returns
+ */
 function DataAdder({ createItem, handleFinish, finishDisabled }) {
   const [value, setValue] = useState("");
 
@@ -46,5 +55,11 @@ function DataAdder({ createItem, handleFinish, finishDisabled }) {
     </div>
   );
 }
+
+DataAdder.propTypes = {
+  createItem: PropTypes.func.isRequired,
+  handleFinish: PropTypes.func.isRequired,
+  finishDisabled: PropTypes.bool.isRequired,
+};
 
 export default DataAdder;
