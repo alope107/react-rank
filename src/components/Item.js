@@ -1,10 +1,12 @@
+import PropTypes from "prop-types";
+
 import { Reorder } from "framer-motion";
 
-function Item({ title }) {
+function Item({ content }) {
   return (
     <Reorder.Item
-      key={title}
-      value={title}
+      key={content}
+      value={content}
       dragListener={false}
       initial={{ opacity: 0, y: 30 }}
       animate={{
@@ -22,9 +24,13 @@ function Item({ title }) {
         damping: 30,
       }}
     >
-      <h1>{title}</h1>
+      <h1>{content}</h1>
     </Reorder.Item>
   );
 }
+
+Item.propTypes = {
+  content: PropTypes.any.isRequired,
+};
 
 export default Item;
