@@ -1,23 +1,27 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 /**
  *
  * @param {Object} props
  * @param {function(string)} props.createItem
  * @param {function()} props.handleFinish
- * @param {boolean} finishDisabled
+ * @param {boolean} props.finishDisabled
  * @returns
  */
 function DataAdder({ createItem, handleFinish, finishDisabled }) {
   const [value, setValue] = useState("");
+  const controls = useAnimation();
 
+  // Submit on enter
   const handleKeyUp = (event) => {
     if (event.key === "Enter") {
       handleSubmit();
     }
   };
 
+  // Only submit if the input is non-empty and not already in the list
   const handleSubmit = () => {
     if (value === "") {
       handleInvalid();
@@ -31,9 +35,12 @@ function DataAdder({ createItem, handleFinish, finishDisabled }) {
     setValue("");
   };
 
+  // Shake angrily if the user tries to put in invalid data
   const handleInvalid = () => {
-    console.log("Can't enter that!");
-    // TODO: animate instead of logging error
+    controls.start({
+      x: [0, -20, 20, 0],
+      transition: { duration: 0.1, repeat: 3 },
+    });
   };
 
   const handleChange = (event) => {
@@ -41,7 +48,7 @@ function DataAdder({ createItem, handleFinish, finishDisabled }) {
   };
 
   return (
-    <div>
+    <motion.div animate={controls}>
       <input
         type="text"
         value={value}
@@ -52,7 +59,7 @@ function DataAdder({ createItem, handleFinish, finishDisabled }) {
       <button onClick={handleFinish} disabled={finishDisabled}>
         Start Ranking!
       </button>
-    </div>
+    </motion.div>
   );
 }
 

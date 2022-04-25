@@ -10,6 +10,7 @@ function Item({ content }) {
       dragListener={false}
       initial={{ opacity: 0, y: 30 }}
       animate={{
+        // animation on entry
         opacity: 1,
         y: 0,
         transition: {
@@ -19,6 +20,7 @@ function Item({ content }) {
         },
       }}
       transition={{
+        //animation on reorder
         type: "spring",
         stiffness: 300,
         damping: 30,
