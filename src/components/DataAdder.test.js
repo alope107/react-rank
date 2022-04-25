@@ -39,6 +39,7 @@ describe("DataAdder", () => {
   it("adds an item when a user types it in and hits enter", async () => {
     const user = userEvent.setup();
 
+    // make it so the createItem call succeeds
     createItem.mockReturnValueOnce(true);
 
     render(
@@ -52,6 +53,30 @@ describe("DataAdder", () => {
     const textbox = screen.getByRole("textbox");
     await user.click(textbox);
     await user.keyboard("dummy{Enter}");
+
+    expect(createItem).toHaveBeenCalledWith("dummy");
+    expect(textbox.value).toBe("");
+  });
+
+  it("adds an item when a user types it in and clicks 'Add Item'", async () => {
+    const user = userEvent.setup();
+
+    // make it so the createItem call succeeds
+    createItem.mockReturnValueOnce(true);
+
+    render(
+      <DataAdder
+        createItem={createItem}
+        handleFinish={handleFinish}
+        finishDisabled={false}
+      />
+    );
+
+    const textbox = screen.getByRole("textbox");
+    const butt = screen.getByText("Add Item");
+    await user.click(textbox);
+    await user.keyboard("dummy");
+    await user.click(butt);
 
     expect(createItem).toHaveBeenCalledWith("dummy");
     expect(textbox.value).toBe("");
@@ -78,6 +103,7 @@ describe("DataAdder", () => {
   it("does not clear the textbox if adding an item was unsuccessful", async () => {
     const user = userEvent.setup();
 
+    // Make it so the createItem call fails
     createItem.mockReturnValueOnce(false);
 
     render(
@@ -96,5 +122,22 @@ describe("DataAdder", () => {
     expect(handleFinish).not.toHaveBeenCalled();
 
     expect(textbox.value).toBe("dummy");
+  });
+
+  it("calls handleFinish when the Start Ranking button is clicked", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <DataAdder
+        createItem={createItem}
+        handleFinish={handleFinish}
+        finishDisabled={false}
+      />
+    );
+
+    const butt = screen.getByText("Start Ranking!");
+    await user.click(butt);
+
+    expect(handleFinish).toHaveBeenCalled();
   });
 });
