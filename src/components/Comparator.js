@@ -15,8 +15,12 @@ import PropTypes from "prop-types";
 function Comparator({ compare, pair }) {
   return (
     <div id="compButtonHolder">
-      <button onClick={() => compare(true)}>{pair[0]}</button>
-      <button onClick={() => compare(false)}>{pair[1]}</button>
+      <button onClick={() => compare(true)}>
+        <h1>{pair[0]}</h1>
+      </button>
+      <button onClick={() => compare(false)}>
+        <h1>{pair[1]}</h1>
+      </button>
     </div>
   );
 }

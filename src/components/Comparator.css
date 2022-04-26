@@ -7,6 +7,7 @@ TODO(auberon): Investigate tools for scoping CSS in React.
     width: 100%;
     position: fixed;
     bottom: 0;
+    gap: 10px;
     /* Make sure the buttons are in front of the items being ranked */
     z-index: 1; 
 }
@@ -14,8 +15,7 @@ TODO(auberon): Investigate tools for scoping CSS in React.
 #compButtonHolder button {
     flex-grow: 1;
     height: 100px;
-}
-
-#compButtonHolder button + #compButtonHolder button {
-    margin-left: 2%;
+    background-color: hotpink;
+    border-color: black;
+    border-radius: 30px;
 }
