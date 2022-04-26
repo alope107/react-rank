@@ -7,6 +7,8 @@ TODO(auberon): Investigate tools for scoping CSS in React.
     width: 100%;
     position: fixed;
     bottom: 0;
+    /* Make sure the buttons are in front of the items being ranked */
+    z-index: 1; 
 }
 
 #compButtonHolder button {
