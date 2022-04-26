@@ -1,0 +1,19 @@
+/*
+TODO(auberon): Investigate tools for scoping CSS in React.
+*/
+
+#compButtonHolder {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#compButtonHolder button {
+    flex-grow: 1;
+    height: 100px;
+}
+
+#compButtonHolder button + #compButtonHolder button {
+    margin-left: 2%;
+}
