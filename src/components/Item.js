@@ -1,34 +1,29 @@
 import PropTypes from "prop-types";
 
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 
-function Item({ content }) {
-  const controls = useAnimation();
+function Item({ content, selected }) {
+  // The animation characteristics shared between whether
+  // it's selected or not
+  const baseAnim = {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 700,
+      damping: 15,
+    },
+  };
 
-  useEffect(() => {
-    controls.start(() => ({
-      // animation on entry
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 700,
-        damping: 15,
-      },
-    }));
-  }, []);
-
-  // Flash red background and then go back to transparent
-  const flash = () => {
-    controls.start({
-      backgroundColor: [
-        "rgba(255, 0, 0, 0)",
-        "rgba(255, 0, 0, 1)",
-        "rgba(255, 0, 0, 0)",
-      ],
-      transition: { duration: 0.5, ease: "easeInOut" },
-    });
+  const variants = {
+    unselected: {
+      x: 0,
+      ...baseAnim,
+    },
+    selected: {
+      x: 20,
+      ...baseAnim,
+    },
   };
 
   return (
@@ -37,14 +32,14 @@ function Item({ content }) {
       key={content}
       value={content}
       initial={{ opacity: 0, y: 30 }}
-      animate={controls}
+      animate={selected ? "selected" : "unselected"}
+      variants={variants}
       transition={{
         //animation on reorder
         type: "spring",
         stiffness: 500,
         damping: 20,
       }}
-      onClick={flash}
     >
       <h1>{content}</h1>
     </motion.div>
@@ -53,6 +48,7 @@ function Item({ content }) {
 
 Item.propTypes = {
   content: PropTypes.any.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 export default Item;

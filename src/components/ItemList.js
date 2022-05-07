@@ -10,11 +10,11 @@ import Item from "./Item";
  * @param {Array} props.data
  * @returns
  */
-function ItemList({ data }) {
+function ItemList({ data, pair }) {
   return (
     <div>
-      {data.map((datum) => (
-        <Item key={datum} content={datum}></Item>
+      {data.map((datum, i) => (
+        <Item key={datum} content={datum} selected={pair.includes(i)}></Item>
       ))}
     </div>
   );
@@ -22,6 +22,7 @@ function ItemList({ data }) {
 
 ItemList.propTypes = {
   data: PropTypes.array.isRequired,
+  pair: PropTypes.array.isRequired,
 };
 
 export default ItemList;

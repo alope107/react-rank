@@ -32,7 +32,7 @@ function RankGame() {
           finishDisabled={data.length < 2}
         ></DataAdder>
       )}
-      <ItemList data={data}></ItemList>
+      <ItemList data={data} pair={pair}></ItemList>
       {mode === "ranking" && (
         <UserSort
           data={data}
