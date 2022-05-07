@@ -24,7 +24,6 @@ function shuffleArray(array) {
  * @param {function(Array)} updatePair The state updater for the pair to check
  */
 function* funkySort(arr, updateArr, updatePair) {
-  console.log("FUNKY TIME");
   function swap(i, j) {
     arr = [...arr];
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -40,7 +39,6 @@ function* funkySort(arr, updateArr, updatePair) {
   const checked_pairs = new Set();
 
   while (unchecked_positions.length > 0) {
-    console.log(unchecked_positions);
     const position_idx = randInt(0, unchecked_positions.length - 1);
     const position = unchecked_positions[position_idx];
     unchecked_positions.splice(position_idx, 1);
