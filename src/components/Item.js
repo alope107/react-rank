@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 
-import { Reorder } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Item({ content }) {
   return (
-    <Reorder.Item
+    <motion.div
+      layout
       key={content}
       value={content}
       dragListener={false}
@@ -22,12 +23,12 @@ function Item({ content }) {
       transition={{
         //animation on reorder
         type: "spring",
-        stiffness: 300,
-        damping: 30,
+        stiffness: 500,
+        damping: 20,
       }}
     >
       <h1>{content}</h1>
-    </Reorder.Item>
+    </motion.div>
   );
 }
 

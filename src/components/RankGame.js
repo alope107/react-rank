@@ -30,12 +30,10 @@ function RankGame() {
           finishDisabled={data.length < 2}
         ></DataAdder>
       )}
-
+      <ItemList data={data}></ItemList>
       {mode === "ranking" && (
         <UserSort data={data} setData={setData}></UserSort>
       )}
-
-      <ItemList data={data}></ItemList>
     </div>
   );
 }

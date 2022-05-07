@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { Reorder } from "framer-motion";
 
 import Item from "./Item";
 
@@ -14,11 +13,9 @@ import Item from "./Item";
 function ItemList({ data }) {
   return (
     <div>
-      <Reorder.Group values={data} onReorder={() => {}}>
-        {data.map((datum) => (
-          <Item key={datum} content={datum}></Item>
-        ))}
-      </Reorder.Group>
+      {data.map((datum) => (
+        <Item key={datum} content={datum}></Item>
+      ))}
     </div>
   );
 }
