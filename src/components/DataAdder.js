@@ -23,11 +23,12 @@ function DataAdder({ createItem, handleFinish, finishDisabled }) {
 
   // Only submit if the input is non-empty and not already in the list
   const handleSubmit = () => {
-    if (value === "") {
+    const trimmedValue = value.trim();
+    if (trimmedValue === "") {
       handleInvalid();
       return;
     }
-    const success = createItem(value);
+    const success = createItem(trimmedValue);
     if (!success) {
       handleInvalid();
       return;
