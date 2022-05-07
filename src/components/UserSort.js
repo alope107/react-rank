@@ -17,10 +17,10 @@ function UserSort({
   setData,
   pair,
   updatePair,
+  handleFinish,
   sortFactory = insertionSort,
 }) {
   const [stepper] = useState(sortFactory(data, setData, updatePair));
-  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     // Update the stepper only once - gets us to the first yield
@@ -39,15 +39,13 @@ function UserSort({
   const compare = (shouldSwap) => {
     if (stepper.next(shouldSwap).done) {
       updatePair([null, null]);
-      setFinished(true);
+      handleFinish();
     }
   };
 
   return (
     <div>
-      {!finished && (
-        <Comparator compare={compare} arr={data} pair={pair}></Comparator>
-      )}
+      <Comparator compare={compare} arr={data} pair={pair}></Comparator>
     </div>
   );
 }
@@ -57,6 +55,7 @@ UserSort.propTypes = {
   setData: PropTypes.func.isRequired,
   pair: PropTypes.array.isRequired,
   updatePair: PropTypes.func.isRequired,
+  handleFinish: PropTypes.func.isRequired,
   sortFactory: PropTypes.func,
 };
 

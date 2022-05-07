@@ -23,6 +23,16 @@ function RankGame() {
     setMode("ranking");
   };
 
+  const enterFinishedMode = () => {
+    setMode("finished");
+  };
+
+  const enterAddingMode = () => {
+    setData([]);
+    updatePair([null, null]);
+    setMode("adding");
+  };
+
   return (
     <div>
       {mode === "adding" && (
@@ -32,15 +42,20 @@ function RankGame() {
           finishDisabled={data.length < 2}
         ></DataAdder>
       )}
-      <ItemList data={data} pair={pair}></ItemList>
       {mode === "ranking" && (
         <UserSort
           data={data}
           setData={setData}
           pair={pair}
           updatePair={updatePair}
+          handleFinish={enterFinishedMode}
         ></UserSort>
       )}
+      {mode === "finished" && (
+        <button onClick={enterAddingMode}>Play again?</button>
+      )}
+
+      <ItemList data={data} pair={pair}></ItemList>
     </div>
   );
 }
