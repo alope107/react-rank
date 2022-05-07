@@ -1,3 +1,4 @@
+import "./Item.css";
 import PropTypes from "prop-types";
 
 import { motion } from "framer-motion";
@@ -29,6 +30,7 @@ function Item({ content, selected }) {
   return (
     <motion.div
       layout
+      className="itemDiv"
       key={content}
       value={content}
       initial={{ opacity: 0, y: 30 }}
