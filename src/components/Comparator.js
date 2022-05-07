@@ -12,14 +12,14 @@ import PropTypes from "prop-types";
  * @param {Array} props.pair
  * @returns
  */
-function Comparator({ compare, pair }) {
+function Comparator({ compare, arr, pair }) {
   return (
     <div id="compButtonHolder">
       <button onClick={() => compare(true)}>
-        <h1>{pair[0]}</h1>
+        <h1>{arr[pair[0]]}</h1>
       </button>
       <button onClick={() => compare(false)}>
-        <h1>{pair[1]}</h1>
+        <h1>{arr[pair[1]]}</h1>
       </button>
     </div>
   );
@@ -27,6 +27,7 @@ function Comparator({ compare, pair }) {
 
 Comparator.propTypes = {
   compare: PropTypes.func.isRequired,
+  arr: PropTypes.array.isRequired,
   pair: PropTypes.array.isRequired,
 };
 

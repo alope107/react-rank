@@ -21,11 +21,10 @@ function* quickSort(arr, updateArr, updatePair) {
   }
 
   function* partition(low, high) {
-    const pivot = arr[high];
     let i = low - 1;
 
     for (let j = low; j < high; j++) {
-      updatePair([arr[j], pivot]);
+      updatePair([j, high]);
       const shouldSwap = yield;
       if (shouldSwap) {
         i++;

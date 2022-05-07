@@ -39,7 +39,9 @@ function UserSort({ data, setData, sortFactory = insertionSort }) {
 
   return (
     <div>
-      {!finished && <Comparator compare={compare} pair={pair}></Comparator>}
+      {!finished && (
+        <Comparator compare={compare} arr={data} pair={pair}></Comparator>
+      )}
     </div>
   );
 }

@@ -30,7 +30,9 @@ export const commonSortTest = (
       if (firstRes.done) return;
       // Repeatedly passes the comparsion to the sorter until it reports iteration
       // is done.
-      while (!stepper.next(state.pair[0] < state.pair[1]).done) {}
+      while (
+        !stepper.next(state.arr[state.pair[0]] < state.arr[state.pair[1]]).done
+      ) {}
     };
 
     it("sorts an unsorted list", () => {

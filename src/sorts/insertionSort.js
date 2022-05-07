@@ -20,7 +20,7 @@ function* insertionSort(arr, updateArr, updatePair) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i; j > 0; j--) {
       // Selects pair for comparison and waits for result
-      updatePair([arr[j], arr[j - 1]]);
+      updatePair([j, j - 1]);
       const shouldSwap = yield;
 
       if (shouldSwap) {

@@ -12,12 +12,14 @@ function shuffleArray(array) {
 }
 
 /**
- * Does a insertion sort bit by bit. It non-blockingly delegates
+ * Does a funkySort sort bit by bit. It non-blockingly delegates
  * comparisons to some outside comparator. It uses updatePair
  * to denote the two items it wants compared. The outside
  * comparator should then call next on the iterator and pass
  * true if the first item in the pair should be before the second,
  * false otherwise.
+ *
+ * DOES NOT WORK FOR ARRAYS WITH DUPLICATE ELEMENTS
  *
  * @param {Array} arr The initial data array
  * @param {function(Array)} updateArr The state updater for arr
@@ -48,7 +50,7 @@ function* funkySort(arr, updateArr, updatePair) {
     // TODO(auberon): Fix this!!! Does not properly account for items with commas
     const pairStr = pair.toString();
     if (!checked_pairs.has(pairStr)) {
-      updatePair([arr[position + 1], arr[position]]);
+      updatePair([position + 1, position]);
       const shouldSwap = yield;
       if (shouldSwap) {
         swap(position, position + 1);
