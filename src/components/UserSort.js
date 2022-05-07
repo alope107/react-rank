@@ -12,8 +12,13 @@ import insertionSort from "../sorts/insertionSort";
  * @param {function(Array, function, function)} props.sortFactory
  * @returns
  */
-function UserSort({ data, setData, sortFactory = insertionSort }) {
-  const [pair, updatePair] = useState([null, null]);
+function UserSort({
+  data,
+  setData,
+  pair,
+  updatePair,
+  sortFactory = insertionSort,
+}) {
   const [stepper] = useState(sortFactory(data, setData, updatePair));
   const [finished, setFinished] = useState(false);
 
@@ -49,6 +54,8 @@ function UserSort({ data, setData, sortFactory = insertionSort }) {
 UserSort.propTypes = {
   data: PropTypes.array.isRequired,
   setData: PropTypes.func.isRequired,
+  pair: PropTypes.array.isRequired,
+  updatePair: PropTypes.func.isRequired,
   sortFactory: PropTypes.func,
 };
 

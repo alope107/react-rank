@@ -4,8 +4,10 @@ import ItemList from "./ItemList";
 import UserSort from "./UserSort";
 
 function RankGame() {
+  // The overall array of items being ranked
   const [data, setData] = useState([]);
-
+  // The two items currently being compared.
+  const [pair, updatePair] = useState([null, null]);
   // Mode is either "adding" (adding new items to list)
   // or "ranking" (sorting the list)
   const [mode, setMode] = useState("adding");
@@ -32,7 +34,12 @@ function RankGame() {
       )}
       <ItemList data={data}></ItemList>
       {mode === "ranking" && (
-        <UserSort data={data} setData={setData}></UserSort>
+        <UserSort
+          data={data}
+          setData={setData}
+          pair={pair}
+          updatePair={updatePair}
+        ></UserSort>
       )}
     </div>
   );
