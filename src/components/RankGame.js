@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AutoSort from "./AutoSort";
 import DataAdder from "./DataAdder";
 import ItemList from "./ItemList";
 import UserSort from "./UserSort";
@@ -32,6 +33,7 @@ function RankGame() {
   };
 
   const enterFinishedMode = () => {
+    updatePair([null, null]);
     setMode("finished");
   };
 
@@ -73,7 +75,15 @@ function RankGame() {
           <button onClick={enterAddingMode}>Play again?</button>
         </div>
       )}
-      {mode === "replay" && choices.toString()}
+      {mode === "replay" && (
+        <AutoSort
+          data={data}
+          setData={setData}
+          updatePair={updatePair}
+          choices={choices}
+          handleFinish={enterFinishedMode}
+        />
+      )}
 
       <ItemList data={data} pair={pair}></ItemList>
     </div>

@@ -41,7 +41,6 @@ function UserSort({
   const compare = (shouldSwap) => {
     setChoices([...choices, shouldSwap]);
     if (stepper.next(shouldSwap).done) {
-      updatePair([null, null]);
       handleFinish();
     }
   };
