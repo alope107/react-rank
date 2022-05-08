@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AutoSort from "./AutoSort";
 import DataAdder from "./DataAdder";
 import ItemList from "./ItemList";
 import UserSort from "./UserSort";
+import { useSearchParams } from "react-router-dom";
 
 function RankGame() {
   // The overall array of items being ranked
@@ -13,6 +14,37 @@ function RankGame() {
   const [pair, updatePair] = useState([null, null]);
   // A log of all the choices a user made when sorting
   const [choices, setChoices] = useState([]);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Experimental: try to get a preset list of items from the query params
+  const queryItems = searchParams.get("items");
+  let validItems = false;
+  let parsedItems;
+  if (queryItems != null) {
+    try {
+      parsedItems = JSON.parse(queryItems);
+      if (Array.isArray(parsedItems)) {
+        validItems = true;
+      }
+    } catch (err) {
+      // TODO: Show error message to user?
+      console.log(err);
+    }
+  }
+
+  // If there is usable data from the query params, use it to
+  // set the state and begin ranking.
+  useEffect(() => {
+    if (validItems) {
+      setData([...parsedItems]);
+      setOriginal([...parsedItems]);
+      setMode("ranking");
+      setSearchParams({});
+    }
+    // TODO: Continue to explore dependency array warning.
+  }, []);
+
   // Mode is one of:
   // "adding" (adding new items to list)
   // "ranking" (sorting the list)
