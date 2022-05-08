@@ -17,6 +17,8 @@ function UserSort({
   setData,
   pair,
   updatePair,
+  choices,
+  setChoices,
   handleFinish,
   sortFactory = insertionSort,
 }) {
@@ -37,6 +39,7 @@ function UserSort({
    * @param {Boolean} shouldSwap Whether the stepper should make the swap.
    */
   const compare = (shouldSwap) => {
+    setChoices([...choices, shouldSwap]);
     if (stepper.next(shouldSwap).done) {
       updatePair([null, null]);
       handleFinish();
@@ -55,6 +58,8 @@ UserSort.propTypes = {
   setData: PropTypes.func.isRequired,
   pair: PropTypes.array.isRequired,
   updatePair: PropTypes.func.isRequired,
+  choices: PropTypes.array.isRequired,
+  setChoices: PropTypes.func.isRequired,
   handleFinish: PropTypes.func.isRequired,
   sortFactory: PropTypes.func,
 };
